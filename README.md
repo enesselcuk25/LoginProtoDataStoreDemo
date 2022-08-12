@@ -7,6 +7,7 @@ Libraries Used
   * [Flow][5] used for kotlin flow on android 
   * [StateFlow][18] StateFlow A Flow that represents a read-only state with a single updatable data value that emits updates to the value to it                collectors
   * [ViewModel][6] Easily schedule asynchronous tasks for optimal execution.
+  * [LiveData][20] Build data objects that notify views when the underlying database changes.
   * [Hilt][11] for dependency injection
   * [Coroutines][16] asynchronous programming on Android for is used 
   * [DataStore][19] DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally
@@ -37,3 +38,4 @@ The app uses [MVVM architecture][15] to have a unidirectional flow of data, sepa
 [17]: https://developer.android.com/kotlin/parcelize
 [18]: https://developer.android.com/kotlin/flow/stateflow-and-sharedflow
 [19]: https://developer.android.com/topic/libraries/architecture/datastore?gclid=CjwKCAjw9NeXBhAMEiwAbaY4liy2YHqQkrxCEEXe3Cq1ZBmkYnQK6q7Zs5C5juMPBLgguRXqPNn0pRoCTPYQAvD_BwE&gclsrc=aw.ds
+[20]: https://developer.android.com/topic/libraries/architecture/livedata
