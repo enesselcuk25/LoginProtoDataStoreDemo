@@ -2,9 +2,11 @@ package com.enesselcuk.loginprotodatastore.uı.activity.signUp
 
 
 import android.content.Intent
+import android.view.View
 import androidx.activity.viewModels
 import com.enesselcuk.loginprotodatastore.common.BaseActivity
 import com.enesselcuk.loginprotodatastore.databinding.ActivitySignUpBinding
+import com.enesselcuk.loginprotodatastore.util.collect
 import com.enesselcuk.loginprotodatastore.uı.activity.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,11 +24,22 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(ActivitySignUpBinding
                     userEmailEditText.text.toString(),
                     userPasswordEditText.text.toString()
                 )
-                val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
-
+                collect(viewModel.readUser, ::uiState)
             }
+        }
+    }
+
+    private fun uiState(uiState: UiStateSignUp) {
+        if (uiState.isSuccess == true) {
+            val intent = Intent(this@SignUpActivity, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            with(binding.textMessage) {
+                visibility = View.VISIBLE
+                text = uiState.isError
+            }
+
         }
     }
 

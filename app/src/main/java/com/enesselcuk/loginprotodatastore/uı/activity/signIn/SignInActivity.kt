@@ -2,10 +2,11 @@ package com.enesselcuk.loginprotodatastore.uı.activity.signIn
 
 
 import android.content.Intent
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
 import com.enesselcuk.loginprotodatastore.common.BaseActivity
 import com.enesselcuk.loginprotodatastore.databinding.ActivitySigninBinding
+import com.enesselcuk.loginprotodatastore.util.collect
 import com.enesselcuk.loginprotodatastore.uı.activity.home.HomeActivity
 import com.enesselcuk.loginprotodatastore.uı.activity.signUp.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,25 +24,28 @@ class SignInActivity :
                 finish()
             }
 
+            viewModel.userLogin.observe(this@SignInActivity) {}
+
             btnLogin.setOnClickListener {
                 val userEmail = userEmailEditText.text.toString()
                 val userPassword = userPasswordEditText.text.toString()
 
-                viewModel.userLogin.observe(this@SignInActivity) {
-                    it.login?.let { loginPref ->
-                        if (userEmail == loginPref.email && userPassword == loginPref.password) {
-                            val intent = Intent(this@SignInActivity, HomeActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Toast.makeText(
-                                this@SignInActivity,
-                                "you not have register",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
+                collect(viewModel.readUser, ::uiState)
+                viewModel.buttonClick(userEmail, userPassword)
+
+            }
+        }
+    }
+
+    private fun uiState(uiStateSignIn: UiStateSignIn) {
+        if (uiStateSignIn.isSuccess == true) {
+            val intent = Intent(this@SignInActivity, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            with(binding.textMessage) {
+                visibility = View.VISIBLE
+                text = uiStateSignIn.isError
             }
         }
     }

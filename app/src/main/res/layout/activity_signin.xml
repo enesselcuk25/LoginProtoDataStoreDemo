@@ -127,5 +127,16 @@
             app:layout_constraintTop_toBottomOf="@id/text_account" />
 
 
+        <TextView
+            android:id="@+id/text_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_account" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

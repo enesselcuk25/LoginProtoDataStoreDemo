@@ -9,4 +9,12 @@
     <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
 
+    <string name="name_email_password">name, e-mail and password cannot be empty</string>
+    <string name="email_password">E-mail and password cannot be empty</string>
+    <string name="name">name cannot be empty</string>
+    <string name="email_cont">e-mail cannot be empty</string>
+    <string name="password_cont">password cannot be empty</string>
+    <string name="not_register">you not have register</string>
+
+
 </resources>

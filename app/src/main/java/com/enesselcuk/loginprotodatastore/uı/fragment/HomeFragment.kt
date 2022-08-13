@@ -11,7 +11,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: HomeViewModel by viewModels()
     override fun define() {
         viewModel.readMail.observe(viewLifecycleOwner) {
-            binding.textViewEmail.text = it.login?.email
+            binding.textViewMail.text = it.login?.email
+            binding.textViewName.text = it.login?.nameLastName
         }
     }
 }
